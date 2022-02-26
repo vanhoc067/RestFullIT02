@@ -19,4 +19,13 @@ class Category(ModelBase):
         return self.name
 
 
+class Course(ModelBase):
+    subject = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(null =True, blank=True)
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        unique_together = ('subject', 'category')
+
 # Create your models here.
